@@ -1,0 +1,9 @@
+﻿//создание базы из больших dump.sql
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+mysql -uroot -p 
+create database mydb
+
+mysql -v -u root -p -f mydb < dump.sql
+
+================================
+describe [db_name.]table_name;

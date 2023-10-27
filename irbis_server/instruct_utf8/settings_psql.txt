@@ -1,0 +1,39 @@
+﻿Шаг 4. Установка phpPgAdmin в Ubuntu 20.04.
+
+PhpPgAdmin по умолчанию доступен в репозитории Ubuntu 20.04 по умолчанию. Вы можете установить его с помощью следующей aptкоманды:
+
+sudo apt install phppgadmin
+
+Далее, теперь мы редактируем конфигурацию Apache. Сделать это можно, отредактировав файл конфигурации:/etc/apache2/conf-available/phppgadmin.conf
+
+nano /etc/apache2/conf-available/phppgadmin.conf
+
+Найдите следующую строку:
+
+Require local
+
+И замените его следующей строкой:
+
+Require all granted
+
+Теперь перезапустите службу apache, чтобы применить сделанные изменения:
+
+sudo apachectl configtest
+sudo systemctl restart apache2
+
+Шаг 5. Настройте межсетевой экран UFW.
+
+Если вы включили брандмауэр UFW на своем компьютере с Ubuntu, вам может потребоваться разрешить некоторым службам доступ к PhpPgAdmin:
+
+sudo ufw allow http 
+sudo ufw allow https
+sudo ufw allow ssh
+sudo ufw status
+
+Шаг 6. Доступ к веб-интерфейсу PhpPgAdmin.
+
+После успешной установки откройте свой любимый веб-браузер и войдите в веб-интерфейс PhpPgAdmin, используя URL-адрес .http://your-server-ip/phppgadmin
+
+Как установить phpPgAdmin в
+
+Поздравляю! Вы успешно установили phpPgAdmin . Благодарим за использование этого 

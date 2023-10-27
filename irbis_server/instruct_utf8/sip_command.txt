@@ -1,0 +1,39 @@
+﻿Обновление репазиториев:
+sudo apt-get update
+Установка:
+sudo apt-get install asterisk
+Покажет состояние Astersik:
+sudo service asterisk status
+Вербос: При звонках будит выводить информацию о ходе звонка.
+asterisk -rvvv
+
+
+==========================================================================
+sudo nano /etc/asterisk/sip.conf
+================================
+[1001]
+type=friend
+host=dynamic
+secret=1234
+context=ext_1001
+
+[1002]
+type=friend
+host=dynamic
+secret=1234
+context=ext_1002
+
+==================================================================================
+sudo nano /etc/asterisk/extensions.conf
+==========================================
+[ext_1001]
+exten => _XXXX,1,Dial(SIP/${EXTEN})
+
+[ext_1002]
+exten => _XXXX,1,Dial(SIP/${EXTEN})
+
+==========================================================
+
+uninstall:
+apt-get autoremove --purge asterix
+

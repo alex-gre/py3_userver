@@ -1,0 +1,11 @@
+//#
+//Далее создадим папку для нашего сайта и в этой папке создадим файлик index.php.
+
+	
+//mkdir /var/www/default
+//nano /var/www/default/index.php
+
+
+ <?php
+        phpinfo();
+ ?>

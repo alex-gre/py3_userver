@@ -1,0 +1,19 @@
+﻿How do I get the CPU temperature?
+
+After you install lm-sensors:
+===========================
+sudo apt install lm-sensors
+run:
+=======================
+sudo sensors-detect
+you can run the following command to view hardware temps:
+===================
+watch -n 1 sensors
+Also, the fan is usually controled by BIOS.Another good tool is i7z
+for Intel Core processors:
+=====================
+sudo apt install i7z
+sudo i7z
+and because i7z
+runs like top
+, there is no need to use watch

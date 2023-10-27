@@ -1,0 +1,88 @@
+﻿#OS UBUNTU
+
+#обновление
+sudo apt-get update 
+sudo apt-get upgrade
+====================================================
+#для соединения с irbis $ssh 192.168.1.58 из linux
+fingers yes
+==================================
+если нет ssh установка
+sudo apt-get install openssh-server
+
+=========================
+#монтирование usb disk
+Список устройств
+lsblk
+=======================================
+Команда монтирования:
+mount файл_устройства папка_назначения
+Команда размонтирования:
+sudo umount /dev/sdb1
+=====================
+Пример
+sudo mount /dev/sdb1 /mnt
+
+можно делать резерв копии sudo dd if=/patch/name.iso of=/dev/sdb1
+или наоборот
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+lsblk
+sudo mount /dev/sda1 /mnt
+в моем случае сделать backup командой:
+sudo dd if /dev/sda1 of=/home/backup.iso
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+так же установку из пакета dpkg -i name_package.deb
+
+umount размонтировать
+
+
+
+shutdown --help
+shutdown -h now //выключить систему
+shutdown -r now //перезагрузить систему 
+
+#install prog
+sudo apt-get install mc
+sudo apt-get install sqlite3
+sudo apt-get install golang
+sudo apt-get install phpmyadmin
+#for python 2.7
+sudo apt install python-pip
+
+#for python 3
+sudo apt install python3-pip
+
+#file system
+vi /etc/passwd => :q users
+pwd
+ls -la
+
+
+#text work
+sudo nano name
+sudo vi name
+
+
+#dbms mysql
+mysql -uroot -p password
+
+
+#ip соединения
+ifconfig -a
+
+#system control version
+git init   инициализация гита локального
+git clone url   клонирова репозитарий
+git add <file>  добавить файл 
+git commit -a -m " "  коммит мессаже
+git status посмотреть статус
+git log посмотреть логи
+git branch -a посмотреть ветки
+git branch feature создать ветку feature
+git checkout feature  перейти в ветку
+git push origin feature 
+git checkout master перейти в мастер
+git merge feature слияние с master & feature
+
+

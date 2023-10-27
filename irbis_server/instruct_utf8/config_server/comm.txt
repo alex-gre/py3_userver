@@ -1,0 +1,9 @@
+﻿
+Сделаем пользователя и группу www-data владельцем файлов и папок:
+	
+chown -R www-data:www-data /var/www
+
+Перезапускаем nginx и php-fpm:
+	
+/etc/init.d/nginx restart
+/etc/init.d/php7.2-fpm restart

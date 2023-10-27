@@ -1,0 +1,65 @@
+﻿Samba — это программное обеспечение с открытым исходным кодом, которое обеспечивает услуги обмена файлов и печати для клиентов SMB / CIFS. Samba позволяет системам Linux, включая Ubuntu, обмениваться файлами с Windows-системами, включая Windows 10.
+
+Исходные данные (для примера)
+Windows IP =========================> 192.168.1.2
+Ubuntu IP ==========================> 192.168.1.3
+Название рабочей группы Windows ===========================> WORKGROUP
+
+    Устанавливаем Samba на сервере с Ubuntu 18.04
+
+
+sudo apt  install samba samba-common python-glade2 system-config-samba
+
+
+    Перемещаем дефолтный конфиг в безопасное место
+
+
+mv /etc/samba/smb.conf /etc/samba/smb.conf.bak
+
+
+    Создаем новый файл конфигурации /etc/samba/smb.conf со следующим содержимым
+
+
+#============================ Global definition ================================
+ 
+[global]
+workgroup = WORKGROUP
+server string = Samba Server %v
+#netbios name = ubuntu1604
+security = user
+map to guest = bad user
+name resolve order = bcast host
+dns proxy = no
+bind interfaces only = yes
+
+#============================ Share Definitions ============================== 
+
+[Public]
+   path = /srv/public
+   writable = yes
+   guest ok = yes
+   guest only = yes
+   read only = no
+   create mode = 0777
+   directory mode = 0777
+   force user = nobody
+
+
+В параметре path указываем путь к директории для хранения файлов
+
+    Создаем директорию для хранилища и устанавливаем ей необходимые права
+
+
+sudo mkdir -p /srv/public
+sudo chown -R nobody:nogroup /srv/public
+sudo chmod -R 0775 /srv/public
+
+
+    Перезапускаем сервис
+
+
+sudo service smbd restart
+//and other linux
+//sudo systemctl restart samba
+
+

@@ -1,0 +1,29 @@
+﻿base commands: for local works
+==================================
+git --help
+git clone url   клонирова репозитарий
+===================
+git init
+git add .    add all
+git config --global.email "user_name@mail.com"
+git config --global.user "user_name"
+
+git log
+git commit -m "message" -a
+
+=================================
+
+
+#system control version
+git init   инициализация гита локального
+git clone url   клонирова репозитарий
+git add <file>  добавить файл 
+git commit -a -m " "  коммит мессаже
+git status посмотреть статус
+git log посмотреть логи
+git branch -a посмотреть ветки
+git branch feature создать ветку feature
+git checkout feature  перейти в ветку
+git push origin feature 
+git checkout master перейти в мастер
+git merge feature слияние с master & feature
