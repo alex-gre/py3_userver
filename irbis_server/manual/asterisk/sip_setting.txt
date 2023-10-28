@@ -1,0 +1,119 @@
+﻿Asterisk часть 1 установка на примере Ubuntu Server 20.04
+
+
+Установка asterisk в Ubuntu или Debian:
+sudo apt-get update
+sudo apt-get install asterisk
+
+
+Открыть порт по умолчанию протоколу SIP для udp:
+sudo ufw allow 5060/udp
+
+Открыть порты для протокола RTP:
+sudo ufw allow 10000:20000/udp
+
+
+Добавим asterisk в автозагрузку: 
+sudo systemctl enable asterisk
+
+
+Телефоны мы будем подключать к asterisk по протоколу sip
+
+sudo bash -c ":> /etc/asterisk/sip.conf"
+
+Файл с описанием SIP клиентов для подключения:
+/etc/asterisk/sip.conf:
+[general]
+context=default
+allowguest=no
+allowoverlap=no
+udpbindaddr=0.0.0.0
+transport=udp
+tcpenable=no
+tcpbindaddr=0.0.0.0
+disallow=all
+allow=alaw
+
+[1001]
+type=friend
+host=dynamic
+secret=1234
+
+[1002]
+type=friend
+host=dynamic
+secret=1234
+
+В файле выше указан стандартный набор минимальных опций
+
+Описаны два пира для подключения и заданы пароли
+
+Изучите самостоятельно описанные опции
+
+
+sudo bash -c ":> /etc/asterisk/extensions.conf"
+
+Файл с логикой обработки звонков:
+/etc/asterisk/extensions.conf:
+[general]
+
+[default]
+exten => 1001,1,Dial(SIP/1001,10)
+exten => 1002,1,Dial(SIP/1002,10)
+
+В файле выше описана простейшая логика набора номеров и вызовов SIP пиров
+
+В следующих уроках мы будем разбирать логику построения диалпланов
+
+
+Перезагружаем астериск:
+sudo systemctl restart asterisk
+
+
+Теперь откройте пару установленных клиентских софтфонов
+
+Можно использовать например X-Lite 3 версии или Zoiper 3 версии
+
+Или разные версии выше указанных софтфонов
+
+Ставите две разные версии данного ПО на свой компьютер
+
+В настройках телефонов указываете:
+Display Name, User name, Authorization user name - название пира (1001 или 1002)
+Password - пароль пира (1234)
+Domain - ip адрес сервера
+
+
+Проверим, зарегистрировались ли наши телефоны:
+sudo asterisk -x 'sip show peers'
+
+
+Подключаемся, делаем тестовые звонки и смотрим:
+sudo asterisk -vvvr
+
+Если телефоны не могут зарегистрироваться и в консоли ничего нет, проблема в сетевом экране
+
+ 
+
+Изучите самостоятельно другие команды asterisk:
+server*CLI> sip reload
+server*CLI> sip show settings
+server*CLI> sip show users
+server*CLI> sip show user 1001
+server*CLI> sip show peers
+server*CLI> sip show peer 1001
+
+server*CLI> dialplan reload
+server*CLI> dialplan show default
+
+server*CLI> core reload
+server*CLI> core restart gracefully
+
+server*CLI> sip set debug peer 1001
+server*CLI> sip set debug ip 192.168.0.180
+server*CLI> sip set debug off
+
+server*CLI> rtp set debug on
+server*CLI> rtp set debug off
+
+server*CLI> exit
