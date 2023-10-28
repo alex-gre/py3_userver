@@ -1,0 +1,209 @@
+﻿=== Файлы, текст, вывод команд ===
+
+Преобразование текстовых документов из одной кодировки в другую
+iconv -f cp1251 -t UTF-8 -o file.txt > file_utf8.txt
+
+Отобразить все открытые файлы, сокеты, сетевые подключения и открывшие их процессы
+pkg install lsof
+lsof /data
+
+Заархивировать все файлы в каталоге в архив
+find /data/backup/ -printf '%P ' | tar -czvf /data/backup/test.tar.gz -C /data/backup/ -T -
+
+Посчитать количество файлов в директории
+find ./dirname/ -type f | wc -l
+
+ls -l -R /data/www/ | grep ^- | wc -l
+
+Вывести все строки пронумерованными
+nl -ba test.txt
+
+Вывести первое поле файла по разделютелю (:)
+cut -d':' -f1 /etc/passwd
+
+Вывести количество символов (с 1 по 2)
+cut -c1-2 test.txt
+
+Подсчет строк включающих вхождение
+ls -l | fgrep -c "`date +'%b %e'`"
+
+Подсчет строк исключающих вхождение
+ls -l | fgrep -vc "`date +'%b %e'`"
+
+Вывод только первой колонки из выврдя команды
+ifconfig | awk '$1 == "inet" {print $2}'
+
+Копирование файла в ту же папку с префиксом
+cp /root/file.txt{,.orig}
+
+Замена фразы \ слова в файле в Linux или FreeBSD
+sed -e 's/192.168.1.12/127.0.0.1/g' /etc/uwsgi/site.ini > /etc/uwsgi/site_new.ini
+sed -i s/old_string/new_string/ /home/test/test.txt
+
+Поиск файлов старше N минут
+find /data/pgdata/pg_xlog/ -name 'filename' -type f -mmin -60
+
+Поиск файлов, модифицированых за последние 3 дня
+find /dir -type f -mtime -3
+
+Сложить все числа в файле в командной строке (одно число на строку)
+cat /tmp/file.txt | awk '{s+=$1} END {print s}'
+=== Бэкапы и копирование файлов ===
+
+Сделать бэкап блочного устройства и восстановить
+dd if=/dev/sda1 of=/tmp/sda1.img
+
+dd if=/tmp/sda1.img of=/dev/sda1
+2097152+0 records in
+2097152+0 records out
+1073741824 bytes (1.1 GB) copied, 9.65902 s, 111 MB/s
+
+
+С указанием размера блока (по умолчанию 512 байт), предадим ускорения
+dd if=/tmp/sda1.img of=/dev/sda1 bs=7M
+146+1 records in
+146+1 records out
+1073741824 bytes (1.1 GB) copied, 2.60854 s, 412 MB/s
+
+
+Или просто скопировать файлы и папки
+dd if=/home/user/test.txt of=/home/user/test1.txt
+Создать файл определенного размера
+dd of=file bs=1 count=0 seek=10M
+
+Rsync и нестандартный порт ssh
+rsync -azP -e 'ssh -p 61022' /data/dbase.dump root@10.0.0.23:/tmp/
+
+Поиск файлов, передача найденных построчно указанной команде
+find /tmp/ -name 'sda*' | xargs rm -rf
+=== Железо ===
+
+Информация в Linux о железе
+dmidecode -t system | grep "Product Name"
+
+dmidecode -t system
+
+dmidecode -t bios
+
+dmidecode -t baseboard
+
+dmidecode -t processor
+
+dmidecode -t memory
+
+dmidecode -t connector
+
+cat /proc/cpuinfo -информация о процессоре
+
+cat /proc/meminfo -информация о памяти
+
+cat /proc/swaps -информация о swap
+
+cat /proc/version -версия ядра
+
+cat /proc/net/dev -сетевые интерфейсы, статистика
+
+cat /proc/mounts -смонтированные устройства
+
+cat /proc/partitions -доступные разделы
+
+lspci -PCI устройства
+
+lsusb -USB устройства
+=== Система и командная строка ===
+
+Дата в форматировании - количество дней
+date -v-30d +%d.%m.%Y
+
+Выполнить команду от имени пользователя
+runuser -l user -c 'shutdown -r now'
+
+Вывести с помощью wget страницу сайта в консоль
+wget -q -O- http://10.0.3.10:80
+=== Мониторинг ===
+
+Мониторинг сетевой активности в FreeBSD \ Linux
+В интерактивном режиме отображает траффик, может отображать порты
+Вывод справки по командам - нажать ?
+Выйти из справки по командам - нажать ?
+N - преобразование в тип сервиса
+S - показать порт источника
+D - показать порт назначения
+iftop
+
+Вывести все процессы PID
+PID - pid процесса
+PPID - указатель на pid родителя процесса
+ps -axj
+
+ps -auxf | sort -nr -k 4 | head -5 -поиск пятерки топ ресурсоемких процессов по MEM
+
+ps -auxf | sort -nr -k 3 | head -5 -поиск пятерки топ ресурсоемких процессов по CPU
+
+Анализ процессов в systemd
+ps xawf -eo pid,user,cgroup,args
+systemd-cgls
+
+
+freebsd top сортировка по swap + jail мониторинг swap
+top - w - o - swap - j
+ps aux | sort +4r
+=== PostgreSQL ===
+
+Копирование базы по сети между серверами PostgreSQL без промежуточного файла
+pg_dump -C -h localhost -U localuser dbname | psql -h remotehost -U remoteuser dbname
+pg_dump -C -h remotehost -U remoteuser dbname | psql -h localhost -U localuser dbname
+Полезные опции:
+--format plain
+--ignore-version
+--verbose
+--table public.Table_Name
+
+Или так:
+pg_dump -h localhost -U localuser -Fc dbname | pg_restore -h remotehost -U remoteuser -d dbname
+pg_dump -h remotehost -U remoteuser -Fc dbname | pg_restore -h localhost -U localuser -d dbname
+Полезная опция pg_restore, позволяющая не заливать данные в уже имеющиеся таблицы:
+--no-data-for-failed-tables
+
+Остановка и возлбновление репликации на Slave сервере PostgreSQL
+select pg_xlog_replay_pause();
+select pg_xlog_replay_resume();
+
+
+Завершить сетевые соединения в базе PostgreSQL
+ERROR: database 'testbase' is being accessed by other users
+DETAIL: There are 4 other sessions using the database.
+SELECT * FROM pg_stat_activity WHERE datname = 'testbase';
+SELECT pg_terminate_backend (pg_stat_activity.pid) FROM pg_stat_activity WHERE pg_stat_activity.datname = 'testbase';
+
+Создать базу на основе шаблона другой базы PostgreSQL
+
+CREATE DATABASE testbase WITH TEMPLATE 'testbase_20.08.2019' OWNER testbase_user;
+
+Очистить все таблицы в базе PostgreSQL
+
+SELECT 'TRUNCATE ' || table_name || ' CASCADE' || ';' FROM information_schema.tables WHERE table_schema='public' AND table_type='BASE TABLE';
+=== GitLab ===
+
+Скачать последний artifacts.zip из GitLab
+
+Синтаксис на публичный репозиторий GitLab
+curl -sS 'https://url/namespace/project/-/jobs/artifacts/refs/download?job=job_name'
+
+Живой пример на приватный с помощью токена (в настройках юзера)
+curl -X GET --header 'PRIVATE-TOKEN: P1ychYKjaGzLg1-FnZZe' -o artifacts.zip https://gitlab.domain.com/developers/firstproject/-/jobs/artifacts/dev/download?job=serverbuild
+=== MySQL ===
+
+Размер баз данных в MySQL
+SELECT table_schema 'DbName', Round(Sum(data_length + index_length) / 1024 / 1024, 1) 'DbSizeMB' FROM information_schema.tables GROUP BY table_schema;
+=== Сеть ===
+
+telnet запрос к HTTP
+telnet domain.com 80
+GET /search/?q=запрос HTTP/1.1
+HOST: domain.com
+=== RabbitMQ ===
+
+Экспорт и импорт конфигурации
+rabbitmqadmin export /tmp/rabbitmq_`date +%Y_%m_%d`.json
+rabbitmqadmin import /tmp/rabbitmq_`date +%Y_%m_%d`.json 
