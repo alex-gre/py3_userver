@@ -4,7 +4,8 @@ def menu():
     print("""
         1 - Input contacts organizer.db
         2 - View select contacts 
-        3 - Delete all contacts   
+        3 - Backup database output dump.sql
+        4 - Delete all contacts   
     """)
 menu()
 
@@ -16,6 +17,9 @@ elif (i==2):
     organizerdb.View()
 
 elif (i==3):
+    organizerdb.Dump()
+
+elif (i==4):
     organizerdb.Clear()
 
 else : print('error')

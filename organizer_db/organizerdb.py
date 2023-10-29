@@ -32,6 +32,15 @@ def View():
 
     conn.close()
 
+def Dump():
+   # Convert file organizer.db to SQL dump file dump.sql
+   conn = sqlite3.connect('organizer.db')
+   with open('dump.sql', 'w') as f:
+       for line in conn.iterdump():
+           f.write('%s\n' % line)
+   conn.close()
+
+
 def Clear():
     conn = sqlite3.connect("organizer.db")
     cursor = conn.cursor()
