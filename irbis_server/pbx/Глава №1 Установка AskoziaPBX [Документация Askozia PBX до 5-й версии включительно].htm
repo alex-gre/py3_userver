@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr" class="no-js">
+<head>
+    <meta charset="utf-8" />
+    <title>Глава №1 Установка AskoziaPBX [Документация Askozia PBX до 5-й версии включительно]</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <meta name="generator" content="DokuWiki"/>
+<meta name="theme-color" content="#008800"/>
+<meta name="robots" content="index,follow"/>
+<meta name="keywords" content="handbook,setup"/>
+<link rel="search" type="application/opensearchdescription+xml" href="/lib/exe/opensearch.php" title="Документация Askozia PBX до 5-й версии включительно"/>
+<link rel="start" href="/"/>
+<link rel="contents" href="/handbook:setup?do=index" title="Все страницы"/>
+<link rel="manifest" href="/lib/exe/manifest.php"/>
+<link rel="alternate" type="application/rss+xml" title="Недавние изменения" href="/feed.php"/>
+<link rel="alternate" type="application/rss+xml" title="Текущее пространство имён" href="/feed.php?mode=list&amp;ns=handbook"/>
+<link rel="alternate" type="text/html" title="Простой HTML" href="/_export/xhtml/handbook:setup"/>
+<link rel="alternate" type="text/plain" title="вики-разметка" href="/_export/raw/handbook:setup"/>
+<link rel="canonical" href="http://wiki.askozia.ru/handbook:setup"/>
+<link rel="stylesheet" type="text/css" href="/lib/exe/css.php?t=dokuwiki&amp;tseed=8a5c5d8f20d96129f03b58e72a589e1b"/>
+<link rel="stylesheet" type="text/css" href="/lib/plugins/syntaxhighlighter4/dist/theme-default.css"/>
+<link rel="stylesheet" type="text/css" href="/lib/plugins/syntaxhighlighter4/dist/override.css"/>
+<link rel="stylesheet" type="text/css" href="/lib/plugins/codeprettify/code-prettify/src/prettify.css"/>
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">/*<![CDATA[*/var NS='handbook';var JSINFO = {"id":"handbook:setup","namespace":"handbook","ACT":"show","useHeadingNavigation":1,"useHeadingContent":0};
+/*!]]>*/</script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/jquery.php?tseed=23f888679b4f1dc26eef34902aca964f"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/exe/js.php?t=dokuwiki&amp;tseed=8a5c5d8f20d96129f03b58e72a589e1b"></script>
+<script type="text/javascript" src="/lib/plugins/syntaxhighlighter4/dist/syntaxhighlighter.js"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/plugins/codeprettify/code-prettify/src/prettify.js"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/plugins/codeprettify/code-prettify/src/lang-css.js"></script>
+<script type="text/javascript" charset="utf-8" src="/lib/plugins/codeprettify/code-prettify/src/lang-none.js"></script>
+<!--<![endif]-->
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="shortcut icon" href="/lib/tpl/dokuwiki/images/favicon.ico" />
+<link rel="apple-touch-icon" href="/lib/tpl/dokuwiki/images/apple-touch-icon.png" />
+    </head>
+
+<body>
+    <div id="dokuwiki__site"><div id="dokuwiki__top" class="site dokuwiki mode_show tpl_dokuwiki    showSidebar hasSidebar">
+
+        
+<!-- ********** HEADER ********** -->
+<div id="dokuwiki__header"><div class="pad group">
+
+    <h2 style='color:red;'>Внимание! Документация к новой MikoPBX доступна <a href="https://wiki.mikopbx.com">по ссылке</a></h2>
+<!-- Start of Rocket.Chat Livechat Script -->
+
+    <script>
+      (function(d,t) {
+        var BASE_URL="http://172.16.32.129:3000";
+        var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+        g.src=BASE_URL+"/packs/js/sdk.js";
+        g.defer = true;
+        g.async = true;
+        s.parentNode.insertBefore(g,s);
+        g.onload=function(){
+          window.chatwootSDK.run({
+            websiteToken: '5YKu57BcGDPcQYkGQpH6Mihz',
+            baseUrl: BASE_URL
+          })
+        }
+      })(document,"script");
+    </script>
+    
+    <div class="headings group">
+        <ul class="a11y skip">
+            <li><a href="#dokuwiki__content">Перейти к содержанию</a></li>
+        </ul>
+
+        <h1><a href="/handbook"  accesskey="h" title="[H]"><img src="/lib/tpl/dokuwiki/images/logo.png" width="64" height="64" alt="" /> <span>Документация Askozia PBX до 5-й версии включительно</span></a></h1>
+            </div>
+
+    <div class="tools group">
+        <!-- USER TOOLS -->
+                    <div id="dokuwiki__usertools">
+                <h3 class="a11y">Инструменты пользователя</h3>
+                <ul>
+                    <li class="action login"><a href="/handbook:setup?do=login&amp;sectok=" title="Войти" rel="nofollow"><span>Войти</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10 17.25V14H3v-4h7V6.75L15.25 12 10 17.25M8 2h9a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2v-4h2v4h9V4H8v4H6V4a2 2 0 0 1 2-2z"/></svg></a></li>                </ul>
+            </div>
+        
+        <!-- SITE TOOLS -->
+        <div id="dokuwiki__sitetools">
+            <h3 class="a11y">Инструменты сайта</h3>
+            <form action="/handbook" method="get" role="search" class="search doku_form" id="dw__search" accept-charset="utf-8"><input type="hidden" name="do" value="search" /><input type="hidden" name="id" value="handbook:setup" /><div class="no"><input name="q" type="text" class="edit" title="[F]" accesskey="f" placeholder="Найти" autocomplete="on" id="qsearch__in" value="" /><button value="1" type="submit" title="Найти">Найти</button><div id="qsearch__out" class="ajax_qsearch JSpopup"></div></div></form>            <div class="mobileTools">
+                <form action="/doku.php" method="get" accept-charset="utf-8"><div class="no"><input type="hidden" name="id" value="handbook:setup" /><select name="do" class="edit quickselect" title="Инструменты"><option value="">Инструменты</option><optgroup label="Инструменты страницы"><option value="edit">Показать исходный текст</option><option value="revisions">История страницы</option><option value="backlink">Ссылки сюда</option></optgroup><optgroup label="Инструменты сайта"><option value="recent">Недавние изменения</option><option value="media">Управление медиафайлами</option><option value="index">Все страницы</option></optgroup><optgroup label="Инструменты пользователя"><option value="login">Войти</option></optgroup></select><button type="submit">&gt;</button></div></form>            </div>
+            <ul>
+                <li class="action recent"><a href="/handbook:setup?do=recent" title="Недавние изменения [r]" rel="nofollow" accesskey="r">Недавние изменения</a></li><li class="action media"><a href="/handbook:setup?do=media&amp;ns=handbook" title="Управление медиафайлами" rel="nofollow">Управление медиафайлами</a></li><li class="action index"><a href="/handbook:setup?do=index" title="Все страницы [x]" rel="nofollow" accesskey="x">Все страницы</a></li>            </ul>
+        </div>
+
+    </div>
+
+    <!-- BREADCRUMBS -->
+            <div class="breadcrumbs">
+                                        <div class="trace"><span class="bchead">Вы посетили:</span> <span class="bcsep">•</span> <span class="curid"><bdi><a href="/handbook:setup"  class="breadcrumbs" title="handbook:setup">Глава №1 Установка AskoziaPBX</a></bdi></span></div>
+                    </div>
+    
+
+
+    <hr class="a11y" />
+</div></div><!-- /header -->
+
+        <div class="wrapper group">
+
+                            <!-- ********** ASIDE ********** -->
+                <div id="dokuwiki__aside"><div class="pad aside include group">
+                    <h3 class="toggle">Боковая панель</h3>
+                    <div class="content"><div class="group">
+                                                                        <ul>
+<li class="level1"><div class="li"> <a href="/handbook" class="wikilink1" title="handbook">Главная</a><br/>
+</div>
+</li>
+</ul>
+
+<p>
+<br/>
+
+ <strong>AskoziaPBX</strong>
+</p>
+<hr />
+<ul>
+<li class="level1"><div class="li"> <a href="/handbook:setup" class="wikilink1" title="handbook:setup">Установка</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:welcome" class="wikilink1" title="handbook:welcome">Знакомство</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:system" class="wikilink1" title="handbook:system">Система</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:connect" class="wikilink1" title="handbook:connect">Подключение</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:accounts" class="wikilink1" title="handbook:accounts">Учетные записи</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:dialplan" class="wikilink1" title="handbook:dialplan">Диаплан</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:services" class="wikilink1" title="handbook:services">Сервисы</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:status" class="wikilink1" title="handbook:status">Статус</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:advanced" class="wikilink1" title="handbook:advanced">Расширенные настройки</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:faq" class="wikilink1" title="handbook:faq">FAQ/ЧАВО</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:integrator" class="wikilink1" title="handbook:integrator">Помощь интеграторам</a></div>
+</li>
+</ul>
+
+<p>
+<br/>
+
+</p>
+
+<p>
+<strong>Безопасность</strong>
+</p>
+<hr />
+<ul>
+<li class="level1"><div class="li"> <a href="/handbook:security" class="wikilink1" title="handbook:security">Рекомендации по безопасности в Askozia</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:security:firewall" class="wikilink1" title="handbook:security:firewall">Firewall</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:security:fail2ban" class="wikilink1" title="handbook:security:fail2ban">Fail2ban</a></div>
+</li>
+</ul>
+
+<p>
+<br/>
+
+</p>
+
+<p>
+<strong>Редактор маршрутов (CFE)</strong>
+</p>
+<hr />
+<ul>
+<li class="level1"><div class="li"> <a href="/handbook:cfe:getting_started" class="wikilink1" title="handbook:cfe:getting_started">С чего начать</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:cfe:modules" class="wikilink1" title="handbook:cfe:modules">Обзор модулей</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:cfe:templates" class="wikilink1" title="handbook:cfe:templates">Шаблоны маршрутов</a></div>
+</li>
+</ul>
+
+<p>
+<br/>
+
+<strong>Панель телефонии (CTI)</strong>
+</p>
+<hr />
+<ul>
+<li class="level1"><div class="li"> <a href="/handbook:cti" class="wikilink1" title="handbook:cti">С чего начать</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook:cti:pages_cti" class="wikilink1" title="handbook:cti:pages_cti">Полное описание</a></div>
+</li>
+</ul>
+
+<p>
+<br/>
+
+</p>
+
+<p>
+<strong>Интеграция с 1С</strong>
+</p>
+<hr />
+<ul>
+<li class="level1"><div class="li"> <span class="curid"><a href="/handbook:miko_edition" class="wikilink1" title="handbook:miko_edition">Askozia MIKO Edition</a></span></div>
+</li>
+</ul>
+
+<p>
+<br/>
+
+<strong>Прочее</strong>
+</p>
+<hr />
+<ul>
+<li class="level1"><div class="li"> <a href="/handbook#problemnye_situacii" class="wikilink1" title="handbook">Проблемные ситуации</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/changelog" class="wikilink1" title="changelog">История версий</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="/handbook#poleznye_ssylki" class="wikilink1" title="handbook">Полезные ссылки</a> </div>
+</li>
+</ul>
+                                            </div></div>
+                </div></div><!-- /aside -->
+            
+            <!-- ********** CONTENT ********** -->
+            <div id="dokuwiki__content"><div class="pad group">
+                
+                <div class="pageId"><span>handbook:setup</span></div>
+
+                <div class="page group">
+                                                            <!-- wikipage start -->
+                    <!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Содержание</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#glava_1_ustanovka_askoziapbx">Глава №1 Установка AskoziaPBX</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#sistemnye_trebovanija">Системные требования</a></div></li>
+<li class="level2"><div class="li"><a href="#live_cd">Live CD</a></div></li>
+<li class="level2"><div class="li"><a href="#live_usb_bootable_usb">Live USB / Bootable USB</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ispolzuem_windows">Используем Windows</a></div></li>
+<li class="level3"><div class="li"><a href="#ispolzuem_osx">Используем OSX</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#virtualnye_mashiny">Виртуальные машины</a></div></li>
+<li class="level2"><div class="li"><a href="#ustanovka_iz_obraza_old">Установка из образа (OLD)</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#windows_xp">Windows XP</a></div></li>
+<li class="level3"><div class="li"><a href="#windows_vista_i_windows_7">Windows Vista и Windows 7</a></div></li>
+<li class="level3"><div class="li"><a href="#mac_os_x">Mac OS X</a></div></li>
+<li class="level3"><div class="li"><a href="#linux">Linux</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#komentarii">Коментарии</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="glava_1_ustanovka_askoziapbx">Глава №1 Установка AskoziaPBX</h1>
+<div class="level1">
+<div class="plugin_note notewarning"><strong>Обратите внимание</strong>: Askozia ред. 5 после активации ключа будет привязана к конфигурации ПК.<ul>
+<li class="level1"><div class="li"> Не переустанавливайте станцию </div>
+</li>
+<li class="level1"><div class="li"> Не следует добавлять / удалять сетевые интерфейсы</div>
+</li>
+</ul>
+
+<p>
+Если конфигурация будет изменена, то АТС перейдет в ограниченный режим работы - только экстренные номера. 
+</p>
+
+</div>
+<p>
+<strong>AskoziaPBX</strong> распространяется в виде образа (файл *.iso, *.img, *.bin). Образ может быть установлен на диск.<br/>
+
+<strong>AskoziaPBX - полноценная операционная система</strong> для вашего оборудования, а не отдельная программа.
+</p>
+
+<p>
+Текущая статья содержит пошаговые инструкции по созданию загрузочного диска на различных платформах.
+</p>
+
+<p>
+Есть три способа, чтобы запустить вашу телефонную систему:
+</p>
+<ul>
+<li class="level1"><div class="li"> использовать Live CD для загрузки и запуска системы телефонии;</div>
+</li>
+<li class="level1"><div class="li"> подготовка загрузочной карты памяти или флешки;</div>
+</li>
+<li class="level1"><div class="li"> приобретение преднастроенной системы. В этом случае вы можете пропустить эту главу.</div>
+</li>
+</ul>
+<div class="plugin_note noteimportant">Инструкции по <strong>обновлению</strong> Askozia на новую версию расположены <a href="/handbook:reinstall" class="wikilink1" title="handbook:reinstall">здесь</a>
+</div>
+</div>
+
+<h2 class="sectionedit2" id="sistemnye_trebovanija">Системные требования</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Жесткий диск объемом 1000Mb для основной системы</div>
+</li>
+<li class="level1"><div class="li"> Жесткий диск объемом 50Gb для записей разговоров</div>
+</li>
+<li class="level1"><div class="li"> 1 процессор x86</div>
+</li>
+<li class="level1"><div class="li"> 1Gb оперативной памяти</div>
+</li>
+<li class="level1"><div class="li"> Сетевой адаптер</div>
+</li>
+</ul>
+
+</div>
+
+<h2 class="sectionedit3" id="live_cd">Live CD</h2>
+<div class="level2">
+
+<p>
+<strong>Установка с помощью Live CD</strong> - самый простой способ установки на настольный ПК или на виртуальную машину.<br/>
+
+</p>
+<ol>
+<li class="level1"><div class="li"> Для начала необходимо <a href="https://telefon.miko.ru/personal/update-files/#/tabAskozia" class="urlextern" title="https://telefon.miko.ru/personal/update-files/#/tabAskozia" rel="nofollow">скачать образ Live CD</a>. Ссылка обычно приходит на электронную почту после приобретения Askozia</div>
+</li>
+<li class="level1"><div class="li"> Запишите образ «<strong>askozia-pbx-generic-pc-x86-i486-x_x.iso</strong>» на компакт-диск</div>
+</li>
+<li class="level1"><div class="li"> Вставьте Live CD в компьютер</div>
+</li>
+<li class="level1"><div class="li"> <strong>ПК должен поддерживать загрузку с CD</strong>. Должен быть настроен порядок загрузки с CD привода</div>
+</li>
+<li class="level1"><div class="li"> Перезагрузите ПК</div>
+</li>
+<li class="level1"><div class="li"> Если загрузка прошла успешно, появится консольное меню:</div>
+</li>
+<li class="level1"><div class="li"> <pre class="code">***This is AskoziaPBX, version 2.0.x
+built on Thu Nov 25 21:14:08 CET 2010 for Generic
+AskoziaPBX is Copyright (C) 2007-2010 IKT. All rights reserved.
+m0n0wall base Copyright (C) 2002-2007 Manuel Kasper. All rights reserved.
+LAN IP address assigned via DHCP: xxx.xxx.xxx.xxx
+
+PBX console setup
+*****************
+1) Interfaces: assign network port
+2) set up LAN IP address
+3) Reset webGUI password
+4) Reset to factory defaults
+5) Reboot system
+6) Ping host
+7) Asterisk Console
+8) Install on Hard Drive
+Enter a number: _</pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Введите с клавиатуры цифру 8 и нажмите «<strong>Enter</strong>» для начала установки. Askozia отобразит информацию о всех доступных дисках. В текущем примере - диск «<strong>hda</strong>» <pre class="code">Valid disks are:
+hda: 2097152 sectors (1073 MB) w/32KIB Cache, CHS=2080/16/63
+Enter the device name you wish to install onto: **hda**</pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Введите с клавиатуры имя диска, в текущем случае <strong>hda</strong>.</div>
+</li>
+</ol>
+<div class="plugin_note notewarning"><strong>Имена дисков могут отличаться</strong> для вашей системы. Будьте внимательны с выбором, все данные на диске, куда устанавливается Askozia, будут потеряны.
+</div><ul>
+<li class="level1"><div class="li"> Система запросит подтверждение <pre class="code">********************************************************
+* WARNING!
+* The PBX is about to be installed onto the hda device.
+* - everything on this device will be erased!
+* - this cannot be undone!
+********************************************************
+The PBX will reboot after installation.
+Do you want to proceed? (y/n) **y**</pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Система будет перезагружена, вы хотите продолжить?(Да/Нет). Если уверены - подтверждаем: <strong>у</strong><pre class="code">Installing...done
+Copying configuration...done</pre>
+</div>
+</li>
+</ul>
+
+<p>
+После завершения установки система перезагрузится. Убедитесь, что порядок загрузки системы установлен с того диска, на который мы развернули образ AskoziaPBX.
+</p>
+
+</div>
+
+<h2 class="sectionedit4" id="live_usb_bootable_usb">Live USB / Bootable USB</h2>
+<div class="level2">
+
+<p>
+Большинство современны ПК поддерживают загрузку с USB устройства. <br/>
+
+<strong>AskoziaPBX</strong> может быть запущена с USB устройства. Такой способ установки может потребоваться при отсутствии CD ROM. 
+</p>
+
+</div>
+
+<h4 id="obratite_vnimanie">Обратите внимание</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Минимальная емкость USB диска - <strong>512MB</strong></div>
+</li>
+<li class="level1"><div class="li"> ПК должен поддерживать загрузку с USB </div>
+</li>
+<li class="level1"><div class="li"> При загрузке с USB все изменения в конфигурации действуют до первой перезагрузки</div>
+</li>
+<li class="level1"><div class="li"> Режим <strong>Live USB</strong> - предназначен для установки или восстановления системы</div>
+</li>
+</ul>
+<div class="plugin_note noteimportant">Режим <strong>Bootable USB</strong> - предназначен для работы АТС с USB диска (флэш карты). Используйте для установки файл <strong>askozia-pbx-generic-pc-x86-i486-XXX-bootable_usb.bin</strong>
+</div><div class="plugin_note noteimportant">Режим <strong>Live USB</strong> - предназначен для установки или восстановления систем. Используйте для установки файл <strong>askozia-pbx-generic-pc-x86-i486-5_1ME_v11_live_usb.bin</strong>
+</div>
+</div>
+
+<h3 class="sectionedit5" id="ispolzuem_windows">Используем Windows</h3>
+<div class="level3">
+
+<p>
+Скачайте <a href="https://telefon.miko.ru/personal/update-files/#/tabAskozia" class="urlextern" title="https://telefon.miko.ru/personal/update-files/#/tabAskozia" rel="nofollow"> askozia-pbx-generic-pc-x86-i486-uclibc-x.x.zip</a> и распакуйте архив. 
+</p>
+
+<p>
+Для создания загрузочного USB диска рекомендуем использовать приложение <a href="http://www.osforensics.com/tools/write-usb-images.html" class="urlextern" title="http://www.osforensics.com/tools/write-usb-images.html" rel="nofollow">imageUSB</a>. Скачать можно по <a href="http://www.osforensics.com/tools/write-usb-images.html" class="urlextern" title="http://www.osforensics.com/tools/write-usb-images.html" rel="nofollow">ссылке</a>. 
+</p>
+<ol>
+<li class="level1"><div class="li"> Загрузите и установите приложение. </div>
+</li>
+<li class="level1"><div class="li"> Запустите imageUSB</div>
+</li>
+<li class="level1"><div class="li"> Подключите USB диск к ПК</div>
+</li>
+<li class="level1"><div class="li"> Выполните действие «<strong>Refresh drives</strong>»</div>
+</li>
+<li class="level1"><div class="li"> Выберите USB диск <a href="/_detail/handbook:imageusb.png?id=handbook%3Asetup" class="media" title="handbook:imageusb.png"><img src="/_media/handbook:imageusb.png" class="mediacenter" title=" imageUSB инструкции" alt=" imageUSB инструкции" /></a></div>
+</li>
+<li class="level1"><div class="li"> Выберите файл ораз</div>
+</li>
+<li class="level1"><div class="li"> Выполните действие «<strong>Write</strong>»</div>
+</li>
+<li class="level1"><div class="li"> Дождитесь окончания записи <a href="/_detail/handbook:imgusb_copleted.png?id=handbook%3Asetup" class="media" title="handbook:imgusb_copleted.png"><img src="/_media/handbook:imgusb_copleted.png" class="mediacenter" title=" Завершение работы imageUSB" alt=" Завершение работы imageUSB" /></a></div>
+</li>
+<li class="level1"><div class="li"> Подключите USB диск к ПК</div>
+</li>
+<li class="level1"><div class="li"> Перезагрузите ПК для загрузки с диска</div>
+</li>
+</ol>
+
+</div>
+
+<h3 class="sectionedit6" id="ispolzuem_osx">Используем OSX</h3>
+<div class="level3">
+<div class="plugin_note notewarning">Будте внимательны при выборе устройства к форматированию. Изменения не обратимы!
+</div>
+<p>
+Скачайте <a href="https://telefon.miko.ru/personal/update-files/#/tabAskozia" class="urlextern" title="https://telefon.miko.ru/personal/update-files/#/tabAskozia" rel="nofollow">askozia-pbx-generic-pc-x86-i486-uclibc-x.x.zip</a> и распакуйте архив.
+</p>
+<ol>
+<li class="level1"><div class="li"> Откройте приложение «<strong>Terminal</strong>» (Терминал)</div>
+</li>
+<li class="level1"><div class="li"> Подключите USB диск</div>
+</li>
+<li class="level1"><div class="li"> Выполните команду <pre class="code">diskutil list</pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Будет отображена информация о всех подклеенных дисках <a href="/_detail/handbook:terminal_osx_install_askozia_usb.png?id=handbook%3Asetup" class="media" title="handbook:terminal_osx_install_askozia_usb.png"><img src="/_media/handbook:terminal_osx_install_askozia_usb.png" class="mediacenter" title=" diskutil list " alt=" diskutil list " /></a></div>
+</li>
+<li class="level1"><div class="li"> В текущем примере имя устройства USB «<strong>/dev/disk3</strong>». Иногда диск проще найти сравним вывод команды «diskutil list» до и после подключения устройства</div>
+</li>
+<li class="level1"><div class="li"> Форматируем диск. Потребуется ввести пароль администратора <pre class="code">sudo diskutil eraseDisk FAT32 NONAME  MBRFormat /dev/disk3;</pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Отключим устройство следующей командой <pre class="code">sudo diskutil unmountDisk /dev/disk3;</pre>
+</div>
+</li>
+<li class="level1"><div class="li"> Запишем образ на usb носитель <pre class="code">sudo dd if=askozia-pbx-generic-pc-x86-i486-x_x.bin of=/dev/disk3 bs=1m;</pre>
+</div>
+</li>
+</ol>
+
+</div>
+
+<h2 class="sectionedit7" id="virtualnye_mashiny">Виртуальные машины</h2>
+<div class="level2">
+
+<p>
+В наших блогах мы описали или разместили видео с примерами установки, которые вы можете найти по ссылкам ниже.
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="/handbook:virtualbox" class="wikilink1" title="handbook:virtualbox">VirtualBOX</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.askozia.ru/blogs/askozia/installing-askozia-on-vmware-player/" class="urlextern" title="http://www.askozia.ru/blogs/askozia/installing-askozia-on-vmware-player/" rel="nofollow">VMware Player</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.askozia.ru/blogs/askozia/216/" class="urlextern" title="http://www.askozia.ru/blogs/askozia/216/" rel="nofollow">VMware Fusion</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.askozia.ru/blogs/askozia/installing-askozia22-to-a-virtual-machine/" class="urlextern" title="http://www.askozia.ru/blogs/askozia/installing-askozia22-to-a-virtual-machine/" rel="nofollow">VMware Vsphere 5.0 (ESXi)</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.askozia.com/handbook/index.php?title=Installation#Microsoft.C2.B4s_Hyper-V_environment" class="urlextern" title="http://www.askozia.com/handbook/index.php?title=Installation#Microsoft.C2.B4s_Hyper-V_environment" rel="nofollow">Microsoft´s Hyper-V (по английски)</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="vm_ware">VM Ware</h4>
+<div class="level4">
+<iframe src="//www.youtube-nocookie.com/embed/PaUA---cYVI" height="239" width="425" class="vshare__none" allowfullscreen="" frameborder="0" scrolling="no"></iframe>
+</div>
+
+<h2 class="sectionedit8" id="ustanovka_iz_obraza_old">Установка из образа (OLD)</h2>
+<div class="level2">
+
+<p>
+Если вы используете встроенную систему, или к ней невозможно подключить CD дисковод, вам нужно установить прошивку непосредственно на карту памяти, с которой будет производиться загрузка системы. Это может быть CompactFlash карта, SD карта (большинство систем поддерживают карты до 2 Гб.), жесткий диск, флешка или любой другой носитель, с которого может загружаться ваша система.
+</p>
+
+<p>
+Если ваша система имеет VGA-выход, вы должны скачать Generic образ Askozia. Если доступен вывод только через последовательный порт, качайте Embedded образ.
+</p>
+<div class="plugin_note noteimportant">Образ прошивки - это не просто файл, который можно скопировать на диск для загрузки. Это специальный файл, который должен быть скопирован на ваш носитель в режиме побайтового копирования.
+</div>
+<p>
+Далее описаны инструкции для разных операционных систем.
+</p>
+
+</div>
+
+<h3 class="sectionedit9" id="windows_xp">Windows XP</h3>
+<div class="level3">
+
+<p>
+Допустим, вы загрузили правильный образ прошивки вашей системы и сохранили его на рабочем столе. Кроме того, подготовили носитель, на который хотите установить AskoziaPBX.
+</p>
+
+<p>
+Чтобы записать прошивку на подготовленный диск, вам понадобится  программа «physdiskwrite». Вы можете скачать бесплатно дистрибутив по ссылке <a href="http://m0n0.ch/wall/physdiskwrite.php" class="urlextern" title="http://m0n0.ch/wall/physdiskwrite.php" rel="nofollow">http://m0n0.ch/wall/physdiskwrite.php</a>. Скачайте  версию без PhysGUI (графический интерфейс пользователя). Распакуйте файл любым  способом  и сохраните его на рабочем столе.
+</p>
+
+<p>
+Во-первых, вам необходимо отформатировать выбранный  диск, поскольку существующие данные и разделы могут повлиять на установку. Щелкните правой кнопкой мыши на «Мой компьютер»  и выберите «Управление».
+</p>
+
+<p>
+<a href="/_detail/doc:askozia:handbook:askozia_windowsxp1.png?id=handbook%3Asetup" class="media" title="doc:askozia:handbook:askozia_windowsxp1.png"><img src="/_media/doc:askozia:handbook:askozia_windowsxp1.png" class="mediacenter" title="Рисунок 1.1. Открыть Управление дисками." alt="Рисунок 1.1. Открыть Управление дисками." /></a>
+</p>
+
+<p>
+Затем нажмите на раздел <strong>Управление дисками</strong>.
+Щелкните правой кнопкой мыши на выбранном диске и выберите пункт меню “Форматировать”. Убедитесь, что вы выбрали правильный диск.
+</p>
+<div class="plugin_note notewarning">Названия дисков для вашей системы могут отличаться. Это не обязательно должны быть «Disk1», в зависимости от того, сколько устройств системы распознается. Обратите внимание, что установка удалит все данные на выбранном жестком диске. Пожалуйста, тщательно следите за тем, что вы выбираете.
+</div>
+<p>
+<a href="/_detail/doc:askozia:handbook:askozia_windowsxp2.png?id=handbook%3Asetup" class="media" title="doc:askozia:handbook:askozia_windowsxp2.png"><img src="/_media/doc:askozia:handbook:askozia_windowsxp2.png" class="mediacenter" title="Рисунок 1.2. Форматирование выбранного диска." alt="Рисунок 1.2. Форматирование выбранного диска." /></a>
+В случае если выбранный  диск имеет несколько разделов, необходимо удалить их. 
+</p>
+
+<p>
+Пропустите следующую часть, если есть только один раздел на диске для установки.
+</p>
+
+<p>
+Чтобы удалить раздел, щелкните правой кнопкой мыши на раздел, а затем на «Delete».
+Появится предупреждение перед удалением раздела. Подтвердите, нажав на ОК для удаления раздела. Повторите эту процедуру для всех разделов на выбранном диске.
+<a href="/_detail/doc:askozia:handbook:askozia_windowsxp3.png?id=handbook%3Asetup" class="media" title="doc:askozia:handbook:askozia_windowsxp3.png"><img src="/_media/doc:askozia:handbook:askozia_windowsxp3.png" class="mediacenter" title=" Рисунок 1.3. Удалить раздел" alt=" Рисунок 1.3. Удалить раздел" /></a>
+</p>
+
+<p>
+После завершения форматирования, мы можем приступить к установке AskoziaPBX. Будем считать, что вы сохранили physdiskwrite на рабочем столе.
+Откройте окно командной строки для установки программного обеспечения на выбранный диск с помощью physdiskwrite. 
+Нажмите на <strong>Пуск/Все программы/Стандартные/Командная строка</strong>, чтобы открыть окно командной строки.
+Вы должны ввести <strong>cd Desktop</strong> для того, чтобы изменить текущий каталог на папку с содержимым рабочего стола. 
+</p>
+
+<p>
+Теперь, введите следующую команду, чтобы начать установку:
+</p>
+<pre class="code">physdiskwrite.exe skozia-pbx-myplatform-myversion.img</pre>
+<div class="plugin_note noteimportant">Имя файла образа должно соответствовать скачанному файлу, полученному при покупке системы.
+</div><pre class="code">C:\Users\Documents and Settings\MyUsername\Desktop&gt;
+physdiskwrite.exe askozia-pbx-myplatform-myversion.img
+physdiskwrite v0.5.2 by Manuel Kasper &lt;mk@neon1.net&gt;
+Searching for physical drives...
+Information for \\.\PhysicalDrive0:
+Windows:       cyl: 19452
+tpc: 255
+spt: 63
+C/H/S:         16383/16/63
+Model:         ST3160815AS
+Serial number: 9RX4H316
+Firmware rev.: 3.ADA
+Information for \\.\PhysicalDrive1:
+Windows:       cyl: 31
+tpc: 255
+spt: 63
+Which disk do you want to write? (0..1) x</pre>
+
+<p>
+Вы можете выбрать диск для установки, введя его номер. Замените в примере <strong>X</strong> номером диска. Проверьте , что вы выбрали правильный диск.
+В этом примере PhysicalDrive0 является жесткий диском системы. PhysicalDrive1 является диском для установки AskoziaPBX.
+Здесь мы выбираем 1.
+</p>
+<div class="plugin_note notewarning">Названия дисков для вашей системы могут отличаться. Это не обязательно должны быть «PhysicalDrive1», в зависимости от того, сколько устройств системы распознается. Обратите внимание, что установка удалит все данные на выбранном жестком диске. Пожалуйста, тщательно следите за тем, что вы выбираете.
+</div><pre class="code">About to overwrite the contents of disk x with new data. Proceed? (y/n) y</pre>
+
+<p>
+Введите <strong>Y</strong>, чтобы  записать прошивку на диск. Это может занять некоторое время. Как только все будет завершено, вы увидите что-то похожее на это:
+</p>
+<pre class="code">Found signed compressed image file
+33554432/33554432 bytes written in total</pre>
+
+<p>
+Установка завершена и загрузочная флешка или диск AskoziaPBX готова к использованию.
+</p>
+
+</div>
+
+<h3 class="sectionedit10" id="windows_vista_i_windows_7">Windows Vista и Windows 7</h3>
+<div class="level3">
+
+<p>
+Допустим, вы загрузили правильный образ прошивки вашей системы и сохранили его на рабочем столе. Кроме того, подготовили носитель, на который хотите установить AskoziaPBX.
+</p>
+
+<p>
+Чтобы записать прошивку на подготовленный диск, вам понадобится  программа «physdiskwrite». Вы можете скачать бесплатно дистрибутив по ссылке <a href="http://m0n0.ch/wall/physdiskwrite.php" class="urlextern" title="http://m0n0.ch/wall/physdiskwrite.php" rel="nofollow">http://m0n0.ch/wall/physdiskwrite.php</a>. Скачайте  версию без PhysGUI (графический интерфейс пользователя). Распакуйте файл любым  способом  и сохраните его на рабочем столе.
+</p>
+
+<p>
+Во-первых, Вам необходимо отформатировать выбранный  диск, поскольку существующие данные и разделы могут повлиять на установку. Для этого вам нужно открыть окно командной строки.
+</p>
+
+<p>
+Вам нужно выполнять все в командной строке с правами администратора. Входа в Windows качестве администратора недостаточно. Чтобы открыть командную строку, нажмите кнопку Пуск, введите <strong>CMD</strong> в поле ниже и подтвердите ввод. Нажмите правой кнопкой мыши на «командная строка» в появившемся списке. Затем выберите пункт меню <strong>Запуск от имени администратора</strong>.
+</p>
+
+<p>
+Введите команду <strong>Diskpart</strong> в окне командной строки. По команде открывается окно программы «Diskpart». Вы можете отформатировать диск с помощью данной программы. После выполнения команды вы увидите это:
+</p>
+<pre class="code">C:\Windows\system32\diskpart
+Microsoft DiskPart version 6.1.7600
+Copyright (C) 1999-2008 Microsoft Corporation.
+On computer: My-PC</pre>
+
+<p>
+Введите <strong>list disk</strong> для того, чтобы увидеть все устройства Windows.
+</p>
+<pre class="code">DISKPART&gt; list disk
+Disk ###  Status         Size     Free     Dyn  Gpt
+--------  -------------  -------  -------  ---  ---
+Disk 0    Online          149 GB  1024 KB
+Disk 1    Online          247 MB   214 MB</pre>
+
+<p>
+Выберите диск, который вы хотели отформатировать с помощью команды  <strong>select disk x</strong>. Замените <strong>Х</strong> на номер диска. Убедитесь, что вы выбрали правильный диск.
+</p>
+<div class="plugin_note notewarning">Названия дисков для вашей системы могут отличаться. Это не обязательно должны быть «Disk1», в зависимости от того, сколько устройств системы распознается. Обратите внимание, что установка удалит все данные на выбранном жестком диске. Пожалуйста, тщательно следите за тем, что вы выбираете.
+</div><pre class="code">DISKPART&gt; select disk 1
+Disk 1 is now the selected disk.</pre>
+
+<p>
+Команда <strong>clean</strong> отформатирует выбранный диск. Еще раз убедитесь, что выбрали правильный диск.
+</p>
+<pre class="code">DISKPART&gt; clean</pre>
+
+<p>
+Введите <strong>exit</strong>, чтобы выйти из Diskpart.
+</p>
+<pre class="code">DISKPART&gt; exit</pre>
+
+<p>
+После завершения форматирования, мы можем приступить к установке AskoziaPBX. Будем считать, что вы сохранили physdiskwrite на рабочем столе.
+Откройте окно командной строки для установки программного обеспечения на выбранный диск с помощью physdiskwrite. 
+Нажмите на <strong>Пуск/Все программы/Стандартные/Командная строка</strong>, чтобы открыть окно командной строки.
+Вы должны ввести <strong>cd Desktop</strong> для того, чтобы изменить текущий каталог на папку с содержимым рабочего стола. 
+</p>
+
+<p>
+Теперь, введите следующую команду, чтобы начать установку:
+</p>
+<pre class="code">physdiskwrite.exe skozia-pbx-myplatform-myversion.img</pre>
+<div class="plugin_note noteimportant">Имя файла образа должно соответствовать скачаному файлу, полученному при покупке системы.
+</div><pre class="code">C:\Users\MyUsername\Desktop&gt;physdiskwrite.exe
+askozia-pbx-myplatform-myversion.img
+physdiskwrite v0.5.2 by Manuel Kasper &lt;mk@neon1.net&gt;
+Searching for physical drives...
+Information for \\.\PhysicalDrive0:
+Windows:       cyl: 19452
+tpc: 255
+spt: 63
+C/H/S:         16383/16/63
+Model:         ST3160815AS
+Serial number: 9RX4H316
+Firmware rev.: 3.ADA
+Information for \\.\PhysicalDrive1:
+Windows:       cyl: 31
+tpc: 255
+spt: 63
+Which disk do you want to write? (0..1) x</pre>
+
+<p>
+Вы можете выбрать диск для установки, введя его номер. Замените в примере <strong>X</strong> номером диска. Проверьте , что вы выбрали правильный диск.
+В этом примере PhysicalDrive0 является жесткий диском системы. PhysicalDrive1 является диском для установки AskoziaPBX.
+Здесь мы выбираем 1.
+</p>
+<div class="plugin_note notewarning">Названия дисков для вашей системы могут отличаться. Это не обязательно должны быть «PhysicalDrive1», в зависимости от того, сколько устройств системы распознается. Обратите внимание, что установка удалит все данные на выбранном жестком диске. Пожалуйста, тщательно следите за тем, что вы выбираете.
+</div><pre class="code">About to overwrite the contents of disk x with new data. Proceed? (y/n) y</pre>
+
+<p>
+Введите <strong>Y</strong>, чтобы  записать прошивку на диск. Это может занять некоторое время. Как только все будет завершено,  вы увидите что-то похожее на это:
+</p>
+<pre class="code">Found signed compressed image file
+33554432/33554432 bytes written in total</pre>
+
+<p>
+Установка завершена и загрузочная флешка или диск AskoziaPBX готова к использованию.
+</p>
+
+</div>
+
+<h3 class="sectionedit11" id="mac_os_x">Mac OS X</h3>
+<div class="level3">
+
+<p>
+Допустим, вы загрузили правильный образ прошивки вашей системы и сохранили его на рабочем столе. Кроме того, подготовили носитель, на который хотите установить AskoziaPBX.
+</p>
+
+<p>
+Чтобы открыть <em>терминал</em> нажмите «Ctrl + Пробел». Эта комбинация открывает программу «Spotlight». Введите слово <strong>Terminal</strong> в Spotlight и подтвердите, нажав клавишу Enter. Откроется окно терминала.
+</p>
+
+<p>
+Теперь выполните следующую команду в терминале:
+</p>
+<pre class="code">ls /dev/disk*</pre>
+
+<p>
+Терминал должен показать что-то вроде этого:
+</p>
+<pre class="code">macbook:myMac$ ls /dev/disk*
+/dev/disk0  /dev/disk0s1   /dev/disk0s2
+macbook:myMac$</pre>
+
+<p>
+Эта команда показывает, какие диски распознаются операционной системой. В этом случае «disk0» с разделами «disk0s1» и «Disk0s2». Важно перед установкой знать на какой диск  будет устанавливаться прошивка, в текущий момент диск должен быть отключен от компьютера. Запоминаем список дисков до того как подключим новый носитель.
+</p>
+
+<p>
+Теперь подсоединяем носитель для установки AskoziaPBX и открываем программу «Disk Utility».
+Чтобы открыть Disk Utility нажмите «Ctrl + Пробел», чтобы открыть программу «Spotlight». Введите <strong>Disk Utility</strong> в строке поиска и подтвердите ввод клавишей Enter. Откроется программа Disk Utility.
+</p>
+
+<p>
+В Disk Utility найти нужный диск для установки и отключите монтирование разделов.
+</p>
+
+<p>
+<a href="/_detail/doc:askozia:handbook:askozia_osx1.png?id=handbook%3Asetup" class="media" title="doc:askozia:handbook:askozia_osx1.png"><img src="/_media/doc:askozia:handbook:askozia_osx1.png" class="mediacenter" title="Рисунок 1.4. Отключение монтирования разделов" alt="Рисунок 1.4. Отключение монтирования разделов" /></a>
+</p>
+
+<p>
+После этого возвращяемся в терминал и вводим опять команду:
+</p>
+<pre class="code">ls /dev/disk*</pre>
+
+<p>
+Мы должны увидеть нужное устройство:
+</p>
+<pre class="code">macbook:myMac$ ls /dev/disk*
+ /dev/disk0  /dev/disk0s1   /dev/disk0s2   /dev/disk2   /dev/disk2s1
+macbook:myMac$</pre>
+
+<p>
+ Устройство для установки AskoziaPBX в данном случае «disk2». Теперь мы можем установить прошивку. Это может занять некоторое время.
+</p>
+<div class="plugin_note notewarning">Названия дисков для вашей системы могут отличаться. Это не обязательно должны быть «disk2», в зависимости от того, сколько устройств системы распознается. Обратите внимание, что установка удалит все данные на выбранном жестком диске. Пожалуйста, тщательно следите за тем, что вы выбираете.
+</div>
+<p>
+Следующая команда распаковывает образ и устанавливает его на целевом устройстве.
+</p>
+<pre class="code"> gzcat Desktop/askozia-pbx-myplatform-myversion.img | sudo dd of=/dev/disk2 bs=512</pre>
+
+<p>
+Через несколько секунд терминал должен запросить пароль администратора системы Mac-<abbr title="Operating System">OS</abbr>, после чего начнется формирование образа.
+</p>
+<pre class="code">macbook:myMac$ sudo gzcat Desktop/askozia-pbx-myplatform-myversion.img
+| dd of=/dev/disk2 bs=512
+Password:
+53481+0 records in
+53481+0 records out
+27382272 bytes transferred in 28.288661 secs (967959 bytes/sec)
+macbook:myMac$</pre>
+
+<p>
+Как только запись закончится, в Disk Utility вы увидите, что диск имеет два новых раздела. Извлеките этот диск из системы, используя кнопку <strong>Извлечь</strong>.
+Установка завершена.
+</p>
+
+</div>
+
+<h3 class="sectionedit12" id="linux">Linux</h3>
+<div class="level3">
+
+<p>
+Этот раздел был написан с использованием Ubuntu Linux. Тем не менее, использование командной строки делает данные указания универсальными для других Linux дистрибутивов.
+</p>
+
+<p>
+Допустим, вы загрузили правильный образ прошивки вашей системы и сохранили его на рабочем столе. Кроме того, подготовили носитель, на который хотите установить AskoziaPBX.
+</p>
+
+<p>
+Перед началом загрузки системы, откройте терминал.
+</p>
+
+<p>
+После открытия терминала, перейдите в каталог рабочего стола, где хранится файл прошивки.
+</p>
+<pre class="code">ubuntu@ubuntu:~$ cd Desktop</pre>
+
+<p>
+Теперь, перед подключением диска нам нужно знать, какие диски присутствуют в системе и как они называются. С помощью команд ниже система отобразит все известные диски.
+</p>
+<pre class="code">sudo fdisk -l | grep &quot;Disk /dev/&quot;</pre>
+
+<p>
+Терминал должен выглядеть следующим образом:
+</p>
+<pre class="code">ubuntu@ubuntu:~/Desktop$ sudo fdisk -l | grep &quot;Disk /dev/&quot;
+Disk /dev/sda: 21.5 GB, 21474836480 bytes</pre>
+
+<p>
+Подключите диск, на  который вы хотите установить прошивку и повторите предыдущие команды:
+</p>
+<pre class="code">sudo fdisk -l | grep &quot;Disk /dev/&quot;</pre>
+
+<p>
+Команда возвращает список доступных дисков.:
+</p>
+<pre class="code">ubuntu@ubuntu:~/Desktop$ sudo fdisk -l | grep &quot;Disk /dev/&quot;
+Disk /dev/sda: 21.5 GB, 21474836480 bytes
+Disk /dev/sdb: 1999 MB, 1999568384 bytes</pre>
+
+<p>
+В примере это  /dev/sdb, размер которого 1999MB.
+</p>
+
+<p>
+Если диск был распознан системой, вероятно, он автоматически смонтирован. Прошивка не может быть установлена на смонтированный диск. Выполните следующую команду, чтобы это выяснить это:
+</p>
+<pre class="code">df | grep &quot;/dev/sdb&quot;</pre>
+
+<p>
+В терминале вы должны увидеть следующее:
+</p>
+<pre class="code">ubuntu@ubuntu:~/Desktop$ df | grep &quot;/dev/sdb&quot;
+/dev/sdb1 1952192 1600 1950592 1% /media/KINGSTON</pre>
+
+<p>
+Если выбранный диск имеет несколько разделов, он может быть смонтирован ​​в нескольких местах.
+</p>
+
+<p>
+В нашем случае диск имеет только один раздел.
+Раздел, в который нужно демонтирован это /dev/sdb1. Чтобы отключить этот раздел используйте следующую команду:
+</p>
+<pre class="code">sudo umount /dev/sdb1</pre>
+
+<p>
+В терминале вы увидите следующее:
+</p>
+<pre class="code">ubuntu@ubuntu:~/Desktop$ sudo umount /dev/sdb1</pre>
+
+<p>
+Теперь, когда система не использует данный диск, мы можем установить прошивку на него. Следующая команда распаковывает образ и устанавливает его на диске. Возникающее предупреждение может быть связано с цифровой подписью прошивки AskoziaPBX.
+</p>
+<pre class="code">sudo gunzip -c askozia-pbx-myplatform-myversion.img | sudo dd of=/dev/sdb bs=512</pre>
+<pre class="code">ubuntu@ubuntu:~/Desktop$ sudo gunzip -c askozia-pbx-myplatform.myversion.img | sudo dd of=/dev/sdb bs=512
+gzip: askozia-pbx-myversion.myplatform.img: decompression OK,
+trailing garbage ignored
+63825+0 records in
+63825+0 records out
+32678400 bytes (33 MB) copied, 7.54102 s, 4.3 MB/s
+ubuntu@ubuntu:~/Desktop$</pre>
+
+<p>
+Чтобы убедиться, что прошивка был установлена правильно на диск, отключите и подключите его к вашей системе и проверьте, есть ли два раздела на диске.
+Установка завершена и AskoziaPBX готова к использованию.
+</p>
+
+</div>
+
+<h2 class="sectionedit13" id="komentarii">Коментарии</h2>
+<div class="level2">
+<script charset="utf-8" type="text/javascript">
+                    <!--//--><![CDATA[//><!--
+var disqus_url     = 'http://wiki.askozia.ru/handbook:setup';
+var disqus_title   = 'Глава №1 Установка AskoziaPBX';
+var disqus_message = '';
+var disqus_container_id = 'disqus__thread';
+                    //--><!]]>
+                    </script><div id="disqus__thread"></div><script type="text/javascript" src="//disqus.com/forums/wikiaskozia/embed.js"></script><noscript><a href="//wikiaskozia.disqus.com/?url=ref">View the discussion thread.</a></noscript>
+</div>
+
+<script type='text/javascript'>
+syntaxhighlighterConfig = {
+  autoLinks: true,
+  gutter: true,
+  htmlScript: false,
+  tabSize: 4,
+  smartTabs: true
+}
+</script>
+
+                    <!-- wikipage stop -->
+                                    </div>
+
+                <div class="docInfo"><bdi>handbook/setup.txt</bdi> · Последние изменения: 2017/01/27 11:36  — <bdi>tpor</bdi></div>
+
+                            </div></div><!-- /content -->
+
+            <hr class="a11y" />
+
+            <!-- PAGE ACTIONS -->
+            <div id="dokuwiki__pagetools">
+                <h3 class="a11y">Инструменты страницы</h3>
+                <div class="tools">
+                    <ul>
+                        <li class="source"><a href="/handbook:setup?do=edit" title="Показать исходный текст [v]" rel="nofollow" accesskey="v"><span>Показать исходный текст</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 9h5.5L13 3.5V9M6 2h8l6 6v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4c0-1.11.89-2 2-2m.12 13.5l3.74 3.74 1.42-1.41-2.33-2.33 2.33-2.33-1.42-1.41-3.74 3.74m11.16 0l-3.74-3.74-1.42 1.41 2.33 2.33-2.33 2.33 1.42 1.41 3.74-3.74z"/></svg></a></li><li class="revs"><a href="/handbook:setup?do=revisions" title="История страницы [o]" rel="nofollow" accesskey="o"><span>История страницы</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M11 7v5.11l4.71 2.79.79-1.28-4-2.37V7m0-5C8.97 2 5.91 3.92 4.27 6.77L2 4.5V11h6.5L5.75 8.25C6.96 5.73 9.5 4 12.5 4a7.5 7.5 0 0 1 7.5 7.5 7.5 7.5 0 0 1-7.5 7.5c-3.27 0-6.03-2.09-7.06-5h-2.1c1.1 4.03 4.77 7 9.16 7 5.24 0 9.5-4.25 9.5-9.5A9.5 9.5 0 0 0 12.5 2z"/></svg></a></li><li class="backlink"><a href="/handbook:setup?do=backlink" title="Ссылки сюда" rel="nofollow"><span>Ссылки сюда</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M10.59 13.41c.41.39.41 1.03 0 1.42-.39.39-1.03.39-1.42 0a5.003 5.003 0 0 1 0-7.07l3.54-3.54a5.003 5.003 0 0 1 7.07 0 5.003 5.003 0 0 1 0 7.07l-1.49 1.49c.01-.82-.12-1.64-.4-2.42l.47-.48a2.982 2.982 0 0 0 0-4.24 2.982 2.982 0 0 0-4.24 0l-3.53 3.53a2.982 2.982 0 0 0 0 4.24m2.82-4.24c.39-.39 1.03-.39 1.42 0a5.003 5.003 0 0 1 0 7.07l-3.54 3.54a5.003 5.003 0 0 1-7.07 0 5.003 5.003 0 0 1 0-7.07l1.49-1.49c-.01.82.12 1.64.4 2.43l-.47.47a2.982 2.982 0 0 0 0 4.24 2.982 2.982 0 0 0 4.24 0l3.53-3.53a2.982 2.982 0 0 0 0-4.24.973.973 0 0 1 0-1.42z"/></svg></a></li><li class="top"><a href="#dokuwiki__top" title="Наверх [t]" rel="nofollow" accesskey="t"><span>Наверх</span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"/></svg></a></li>                    </ul>
+                </div>
+            </div>
+        </div><!-- /wrapper -->
+
+        
+<!-- ********** FOOTER ********** -->
+<div id="dokuwiki__footer"><div class="pad">
+    <div class="license">Если не указано иное, содержимое этой вики предоставляется на условиях следующей лицензии: <bdi><a href="http://creativecommons.org/licenses/publicdomain/" rel="license" class="urlextern">Public Domain</a></bdi></div>
+    <div class="buttons">
+        <a href="http://creativecommons.org/licenses/publicdomain/" rel="license"><img src="/lib/images/license/button/publicdomain.png" alt="Public Domain" /></a>        <a href="https://www.dokuwiki.org/donate" title="Donate" ><img
+            src="/lib/tpl/dokuwiki/images/button-donate.gif" width="80" height="15" alt="Donate" /></a>
+        <a href="https://php.net" title="Powered by PHP" ><img
+            src="/lib/tpl/dokuwiki/images/button-php.gif" width="80" height="15" alt="Powered by PHP" /></a>
+        <a href="//validator.w3.org/check/referer" title="Valid HTML5" ><img
+            src="/lib/tpl/dokuwiki/images/button-html5.png" width="80" height="15" alt="Valid HTML5" /></a>
+        <a href="//jigsaw.w3.org/css-validator/check/referer?profile=css3" title="Valid CSS" ><img
+            src="/lib/tpl/dokuwiki/images/button-css.png" width="80" height="15" alt="Valid CSS" /></a>
+        <a href="https://dokuwiki.org/" title="Driven by DokuWiki" ><img
+            src="/lib/tpl/dokuwiki/images/button-dw.png" width="80" height="15" alt="Driven by DokuWiki" /></a>
+    </div>
+</div></div><!-- /footer -->
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-PMSZFP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PMSZFP');</script>
+<!-- End Google Tag Manager -->    </div></div><!-- /site -->
+
+    <div class="no"><img src="/lib/exe/indexer.php?id=handbook%3Asetup&amp;1698665605" width="2" height="1" alt="" /></div>
+    <div id="screen__mode" class="no"></div></body>
+</html>

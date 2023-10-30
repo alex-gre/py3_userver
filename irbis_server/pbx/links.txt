@@ -1,0 +1,6 @@
+old version
+https://downloads.freepbxdistro.org/ISO/
+===========================================
+
+—сылка на дистрибутив:
+https://www.freepbx.org/downloads/
